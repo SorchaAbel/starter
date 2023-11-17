@@ -1,6 +1,9 @@
+env:
+  URL3: "localhost:9000"
+
 steps:
   - label: ":construction_worker: Build"
-    command: echo "Build the rocket"
+    command: echo "Build the rocket" & echo "${URL3}"
     key: build
 
   - label: ":white_check_mark: Test"
