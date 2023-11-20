@@ -7,13 +7,11 @@ steps:
     key: build
 
   - label: ":white_check_mark: Test"
-    command: echo "Test the rocket"
+    command: echo "Test the rocket with env var ${ENV_NUM:-1234}"
     key: test
     depends_on: build
 
   - label: ":rocket: Deploy"
-    command: |
-      echo "Launch the rocket"
-      cat .buildkite/annotation.md | buildkite-agent annotate --style "success"
+    command: echo "Launch the rocket"
     key: deploy
     depends_on: test
