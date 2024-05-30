@@ -3,7 +3,7 @@ env:
 
 steps:
   - label: ":construction_worker: Build"
-    command: echo "Build the rocket" & echo "${URL3}"
+    command: echo "Build the rocket" && buildkite-agent annotate 'Annotate Example `default` style' --context 'ctx-default'
     key: build
 
   - label: ":white_check_mark: Test"
