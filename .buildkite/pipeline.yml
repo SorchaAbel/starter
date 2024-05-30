@@ -7,7 +7,7 @@ steps:
     key: build
 
   - label: ":white_check_mark: Test"
-    command: echo "Test the rocket with env var ${ENV_NUM:-1234}"
+    command: echo "Test the rocket"
     key: test
     depends_on: build
 
