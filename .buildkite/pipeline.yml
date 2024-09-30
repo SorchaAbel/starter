@@ -2,16 +2,10 @@ env:
   URL3: "localhost:9000"
 
 steps:
-  - label: ":construction_worker: Build"
-    command: echo "Build the rocket" && buildkite-agent annotate 'Annotate Example `default` style' --context 'ctx-default'
-    key: build
-
-  - label: ":white_check_mark: Test"
-    command: echo "Test the rocket"
-    key: test
-    depends_on: build
-
-  - label: ":rocket: Deploy"
-    command: echo "Launch the rocket"
-    key: deploy
-    depends_on: test
+  - label: ":rocket: Deploys"
+    commands: 
+      - export REGISTRY="$(nsc workspace describe -o json -k registry_url)"
+      - export SERVICE="base"
+      - export DOCKER_REPOSITORY="$${REGISTRY}/$${SERVICE}:latest"
+      - docker buildx build --platform linux/amd64,linux/arm64 --tag "$${DOCKER_REPOSITORY}" --push .
+      - buildkite-agent annotate --style "success" "Image URL: $${DOCKER_REPOSITORY}"
