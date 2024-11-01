@@ -1,11 +1,7 @@
-env:
-  URL3: "localhost:9000"
-
 steps:
-  - label: ":rocket: Deploys"
-    commands: 
-      - export REGISTRY="$(nsc workspace describe -o json -k registry_url)"
-      - export SERVICE="base"
-      - export DOCKER_REPOSITORY="$${REGISTRY}/$${SERVICE}:latest"
-      - docker buildx build --platform linux/amd64,linux/arm64 --tag "$${DOCKER_REPOSITORY}" --push .
-      - buildkite-agent annotate --style "success" "Image URL: $${DOCKER_REPOSITORY}"
+- label: "Example Script"
+    command: "script.sh"
+    skip: true
+    notify:
+      - github_commit_status:
+          context: "my-custom-status"
