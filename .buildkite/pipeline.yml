@@ -1,6 +1,6 @@
 steps:
-- label: "Example Script"
-    command: echo howdy
+  - label: "Example Test - pass"
+    command: echo "Hello!"
     # skip: true
     # notify:
     #   - github_commit_status:
