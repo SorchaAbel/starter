@@ -1,7 +1,7 @@
 steps:
 - label: "Example Script"
-    command: "script.sh"
-    skip: true
-    notify:
-      - github_commit_status:
-          context: "my-custom-status"
+    command: echo howdy
+    # skip: true
+    # notify:
+    #   - github_commit_status:
+    #       context: "my-custom-status"
