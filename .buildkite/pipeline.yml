@@ -1,6 +1,8 @@
 steps:
-  - label: "Example Test - pass"
-    command: echo "Hello!"
+  - label: "Trigger step with plugins"
+    plugins:
+      - github.com/buildkite-plugins/foo#bar: ~
+    trigger: "trigger-another-pipeline"
     # skip: true
     # notify:
     #   - github_commit_status:
